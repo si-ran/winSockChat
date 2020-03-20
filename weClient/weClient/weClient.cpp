@@ -9,15 +9,19 @@
 
 using std::string;
 using std::cout;
+using std::cin;
 using std::endl;
 using std::thread;
 
 //用于异步消息接收
 void recvFunc(SOCKET& clientSocket) {
     while (1) {
-        char receiveBuf[100];
-        recv(clientSocket, receiveBuf, 100, 0);
-        printf("Recv:%s\n", receiveBuf);
+        char receiveBuf[200] = "\0";
+        if (recv(clientSocket, receiveBuf, sizeof(receiveBuf), 0) < 0) {
+            cout << "服务器断线" << endl;
+            return;
+        }
+        cout << receiveBuf << '\n' << endl;
     }
 }
 
@@ -45,16 +49,18 @@ int main() {
         return 1;
     };
 
+    cout << "欢迎来到匿名聊天系统, 输入想说的话，按下回车就可以发送消息了" << endl;
+
     //连接成功后先启动接收消息的线程
     thread handler(recvFunc, std::ref(clientSocket));
     handler.detach();
 
     //不断给server发送消息
     for (int i = 0; i < 10; i++) {
-        char sendBuf[100] = "hello,this is client";
-        cout << "Send: " << sendBuf << endl;
+        char sendBuf[100];
+        cin >> sendBuf;
+        cout << "消息已经成功发送\n"<< endl;
         send(clientSocket, sendBuf, strlen(sendBuf) + 1, 0);
-        Sleep(5000);
     }
     closesocket(clientSocket);
     WSACleanup();

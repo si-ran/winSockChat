@@ -11,6 +11,7 @@
 
 using std::endl;
 using std::cout;
+using std::vector;
 using std::string;
 using std::stringstream;
 
@@ -49,9 +50,9 @@ int main()
     };
 
     //定义其他参数
-    std::vector<SOCKET> client_user;            //保存已经链接的客户端socket            
-    char receiveBuf[100];                       //接收buf
-    string sendBuf = "";    //发送buf
+    vector<SOCKET> client_user;            //保存已经链接的客户端socket            
+    char receiveBuf[200];                  //接收buf
+    string sendBuf;                        //发送buf
 
     //用select方式循环监听
     while (1) {
@@ -83,12 +84,29 @@ int main()
         //如果fdRead里面有激活的socket，并且不是serSocket，接收信息并广播信息
         for (int i = 0; i < fdRead.fd_count; i++) {
             auto client_id = fdRead.fd_array[i];
-            recv(client_id, receiveBuf, sizeof(receiveBuf), 0);
-            cout << "recv msg: " << receiveBuf << " from: " << client_id << endl;
-            for (auto client : client_user) {
-                sendBuf = "recv msg from: " + toString<SOCKET>(client_id);
-                send(client, sendBuf.data(), sizeof(sendBuf), 0);
-                cout << "send msg: " << sendBuf << " to: " << client << endl;
+            //如果用户断线，将其从列表中剔出
+            if (recv(client_id, receiveBuf, sizeof(receiveBuf), 0) < 0) {
+                cout << client_id << " disconnected" << endl;
+                for (auto client = client_user.begin(); client != client_user.end();) {
+                    if (*client == client_id) {
+                        client = client_user.erase(client);
+                        closesocket(client_id);
+                    }
+                    else {
+                        client++;
+                    }
+                }
+            }
+            //否则接收信息并广播信息
+            else {
+                cout << "recv msg: " << receiveBuf << " from: " << client_id << endl;
+                for (auto client : client_user) {
+                    if (client != client_id) {
+                        sendBuf = "用户 " + toString<SOCKET>(client_id) + ": " + receiveBuf;
+                        send(client, sendBuf.c_str(), 200, 0);
+                        cout << "send msg: " << sendBuf << " to: " << client << endl;
+                    }
+                }
             }
         }
     }
