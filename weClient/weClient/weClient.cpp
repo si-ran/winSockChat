@@ -15,7 +15,7 @@ using std::thread;
 
 //用于异步消息接收
 void recvFunc(SOCKET& clientSocket) {
-    while (1) {
+    while (true) {
         char receiveBuf[200] = "\0";
         if (recv(clientSocket, receiveBuf, sizeof(receiveBuf), 0) < 0) {
             cout << "服务器断线" << endl;
@@ -56,7 +56,7 @@ int main() {
     handler.detach();
 
     //不断给server发送消息
-    for (int i = 0; i < 10; i++) {
+    while (true) {
         char sendBuf[100];
         cin >> sendBuf;
         cout << "消息已经成功发送\n"<< endl;
