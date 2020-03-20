@@ -3,4 +3,4 @@
 
 - 分别编译weServer和weClient解决方案
 - 打开生成的exe(先打开weServer，可打开多个weClient)
-- weClient会自动给weServer发消息,weServer接收到消息后会广播消息
+- 可以在weClient里面输入消息，消息会广播给其他所有在线的client
