@@ -1,0 +1,27 @@
+# ninja log v5
+1	846	606750367	weClientCmake/CMakeFiles/weClientCmake.dir/weClientCmake.cpp.obj	91a0d7caa26cfd90
+862	1157	606750368	weClientCmake/weClientCmake.exe	4b13b1bca7bb8ca4
+0	832	606750902	weClientCmake/CMakeFiles/weClientCmake.dir/__/src/weClientCmake.cpp.obj	76912f9e3e3430f3
+834	1027	606750902	weClientCmake/weClientCmake.exe	d86ebc3eaa35b99b
+0	839	606751129	CMakeFiles/weClientCmake.dir/src/weClientCmake.cpp.obj	ce58a849e835a5d2
+841	1122	606751130	weClientCmake.exe	f402b1c722f9f1e4
+0	158	606751916	build.ninja	763bbcd5193f7c90
+0	23	0	clean	348052268ac310d8
+1	1100	606751917	CMakeFiles/weClientCmake.dir/src/weClientCmake.cpp.obj	ce58a849e835a5d2
+0	137	606751946	build.ninja	763bbcd5193f7c90
+0	8	0	clean	348052268ac310d8
+1	858	606751947	CMakeFiles/weClientCmake.dir/src/weClientCmake.cpp.obj	ce58a849e835a5d2
+860	1000	606751947	weClientCmake.exe	c4a39d8f656b6678
+1	135	606752347	build.ninja	763bbcd5193f7c90
+0	7	0	clean	348052268ac310d8
+4	585	606752347	CMakeFiles/weClientCmake.dir/src/FirstFLTK.cpp.obj	f8d1559ea6a2ca17
+1	748	606752347	CMakeFiles/weClientCmake.dir/src/weClientCmake.cpp.obj	ce58a849e835a5d2
+1	123	606752510	build.ninja	763bbcd5193f7c90
+0	131	606752543	build.ninja	763bbcd5193f7c90
+0	135	606752574	build.ninja	763bbcd5193f7c90
+0	119	606752599	build.ninja	763bbcd5193f7c90
+0	132	606752639	build.ninja	763bbcd5193f7c90
+1	138	606752755	build.ninja	763bbcd5193f7c90
+0	103	606915676	build.ninja	763bbcd5193f7c90
+2	1146	606915677	CMakeFiles/weClientCmake.dir/src/weClientCmake.cpp.obj	576118d3f86b6356
+5	1153	606915677	CMakeFiles/weClientCmake.dir/src/FirstFLTK.cpp.obj	8648bebf93067bcd

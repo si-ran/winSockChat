@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <winsock2.h>
 #include <stdio.h>
@@ -101,11 +101,9 @@ int main()
             else {
                 cout << "recv msg: " << receiveBuf << " from: " << client_id << endl;
                 for (auto client : client_user) {
-                    if (client != client_id) {
-                        sendBuf = "用户 " + toString<SOCKET>(client_id) + ": " + receiveBuf;
-                        send(client, sendBuf.c_str(), 200, 0);
-                        cout << "send msg: " << sendBuf << " to: " << client << endl;
-                    }
+                    sendBuf = "用户-" + toString<SOCKET>(client_id) + ": " + receiveBuf;
+                    send(client, sendBuf.c_str(), 200, 0);
+                    cout << "send msg: " << sendBuf << " to: " << client << endl;
                 }
             }
         }
